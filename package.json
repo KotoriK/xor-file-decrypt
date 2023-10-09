@@ -1,0 +1,39 @@
+{
+  "name": "xor-file-decrypt",
+  "type": "module",
+  "version": "1.0.0",
+  "source": "src/index.js",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "description": "Decrypt file with xor algorithm in any environment",
+  "exports": {
+    "require": "./dist/index.cjs",
+    "import": "./dist/index.js",
+    "types": "./dist/index.d.ts"
+  },
+  "scripts": {
+    "build": "microbundle --format cjs,esm --no-compress"
+  },
+  "keywords": [
+    "xor",
+    "decrypt",
+    "file",
+    "nodejs",
+    "browser"
+  ],
+  "author": {
+    "name": "KotoriK",
+    "url": "https://github.com/KotoriK"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "microbundle": "^0.15.1"
+  },
+  "browserslist": [
+    "last 1 chrome version"
+  ]
+}
