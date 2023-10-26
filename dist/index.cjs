@@ -54,7 +54,6 @@ function tryGetKey(buf) {
       xorResult[i] = header[i] ^ magicNumber[i];
     }
     const keyPossible = xorResult[0];
-    console.log(xorResult);
     for (let i = 1; i < magicNumber.length; i++) {
       if (xorResult[i] !== keyPossible) {
         continue magicNumberIterate;

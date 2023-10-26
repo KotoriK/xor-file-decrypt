@@ -46,7 +46,6 @@ export function tryGetKey(buf) {
             xorResult[i] = header[i] ^ magicNumber[i]
         }
         const keyPossible = xorResult[0]
-        console.log(xorResult)
 
         for (let i = 1; i < magicNumber.length; i++) {
             if (xorResult[i] !== keyPossible) {
@@ -54,8 +53,8 @@ export function tryGetKey(buf) {
             }
         }
         return keyPossible
-
     }
+
 }
 /**
  * 根据key对buf逐字节进行异或处理
