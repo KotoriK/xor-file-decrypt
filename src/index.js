@@ -30,12 +30,9 @@ export function tryGetKey(buf) {
     // key长度一般为1个字节
     // 查找异或后重复超过2次的字节
     const xorResult = new Uint8Array(MAX_MAGIC_NUMBER_LENGTH)
-    /**
-     * @type {number | undefined}
-     */
-    let lastMagicNumberLength
+    let lastMagicNumberLength = 0
     magicNumberIterate: for (const magicNumber of KNOWN_IMAGE_MAGIC_NUMBER) {
-        if (typeof lastMagicNumberLength === 'number' && lastMagicNumberLength !== magicNumber.length) {
+        if (lastMagicNumberLength && lastMagicNumberLength !== magicNumber.length) {
             // 清空xorResult
             for (let i = 0; i < magicNumber.length; i++) {
                 xorResult[i] = 0
@@ -61,7 +58,7 @@ export function tryGetKey(buf) {
  * 
  * @param {ArrayBuffer} buf 
  * @param {number} key 
- * @returns {ArrayBufferLike}
+ * @returns {ArrayBuffer}
  */
 export function xor(buf, key) {
     const result = new Uint8Array(buf.byteLength)
