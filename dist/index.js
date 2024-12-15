@@ -25,7 +25,6 @@ new Uint8Array([0x46, 0x4f, 0x52, 0x4d]),
 
 new Uint8Array([0x52, 0x49, 0x46, 0x46]) // WEBP
 ];
-
 const MAX_MAGIC_NUMBER_LENGTH = Math.max(...KNOWN_IMAGE_MAGIC_NUMBER.map(v => v.length));
 /**
  * 尝试得到异或加密使用的key
@@ -38,12 +37,9 @@ function tryGetKey(buf) {
   // key长度一般为1个字节
   // 查找异或后重复超过2次的字节
   const xorResult = new Uint8Array(MAX_MAGIC_NUMBER_LENGTH);
-  /**
-   * @type {number | undefined}
-   */
-  let lastMagicNumberLength;
+  let lastMagicNumberLength = 0;
   magicNumberIterate: for (const magicNumber of KNOWN_IMAGE_MAGIC_NUMBER) {
-    if (typeof lastMagicNumberLength === 'number' && lastMagicNumberLength !== magicNumber.length) {
+    if (lastMagicNumberLength && lastMagicNumberLength !== magicNumber.length) {
       // 清空xorResult
       for (let i = 0; i < magicNumber.length; i++) {
         xorResult[i] = 0;
@@ -67,7 +63,7 @@ function tryGetKey(buf) {
  * 
  * @param {ArrayBuffer} buf 
  * @param {number} key 
- * @returns {ArrayBufferLike}
+ * @returns {ArrayBuffer}
  */
 function xor(buf, key) {
   const result = new Uint8Array(buf.byteLength);

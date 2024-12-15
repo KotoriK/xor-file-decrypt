@@ -9,6 +9,6 @@ export function tryGetKey(buf: ArrayBuffer): number | undefined;
  *
  * @param {ArrayBuffer} buf
  * @param {number} key
- * @returns {ArrayBufferLike}
+ * @returns {ArrayBuffer}
  */
-export function xor(buf: ArrayBuffer, key: number): ArrayBufferLike;
+export function xor(buf: ArrayBuffer, key: number): ArrayBuffer;
